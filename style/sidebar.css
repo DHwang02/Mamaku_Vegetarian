@@ -8,7 +8,9 @@
     padding-inline: 1%;
     height: 100%;
     z-index: 1000;
-    
+    overflow-y: auto;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, width 0.3s ease;
 }
 
 .sidebar-container svg{
@@ -32,11 +34,13 @@
     color: beige;
     align-self: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    transition: font-size 0.3s ease; 
 }
 
 .sidebar-logo img{
     width: 80px;
     height: 80px;
+    transition: width 0.3s ease, height 0.3s ease;
 }
 
 .sidebar-nav {
@@ -63,6 +67,7 @@
     font-size: 18px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-items: center;
+    transition: font-size 0.3s ease, padding 0.3s ease; 
 
 }
 
@@ -112,68 +117,64 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-@media only screen and (max-width: 600px) {
-    .sidebar-container {
-        width: 100%; /* Full width for smaller screens */
-        padding: 5%; /* Reduce padding for better fit */
-        box-shadow: none; /* Remove shadow for simplicity on small screens */
-        height: auto; /* Allow dynamic height */
+.sidebar-container.hidden {
+    transform: translateX(-100%);
+}
+
+.side_menu {
+    display: none; /* Hidden by default */
+}
+
+.dropdown_sidebar{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    height: 0px;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    background-color: blanchedalmond;
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;       
+    transition: height cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 9999;
+}
+
+.dropdown_sidebar.open{
+    height: auto;
+}
+
+.dropdown_sidebar li{
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 936px) {
+
+    .sidebar-container{
+        transform: translateX(-200%); /* Hide sidebar by default */
     }
 
-    .sidebar-logo {
-        flex-direction: column; /* Stack logo and text vertically */
-        align-items: center; /* Center align items */
-        margin-block: 10px;
+    .sidebar-logo h3{
+        display: none;
     }
-
-    .sidebar-logo img {
-        width: 60px; /* Adjust size for smaller screens */
-        height: 60px;
-    }
-
-    .sidebar-logo h3 {
-        text-align: center; /* Center the text */
-        font-size: 12px; /* Smaller font size */
-        margin: 5px 0;
-    }
-
-    .sidebar-greet {
-        align-items: center; /* Center text */
-        text-align: center;
-        margin-left: 0; /* Remove left margin */
-    }
-
-    .sidebar-greet p,
-    .sidebar-greet h5 {
-        font-size: 14px; /* Adjust font sizes */
-    }
-
-    .sidebar-nav {
-        row-gap: 5px; /* Reduce gap between items */
-        align-items: center; /* Center align items */
-    }
-
-    .sidebar-nav li {
-        padding-left: 0; /* Remove extra padding */
-        padding-right: 0;
-        font-size: 16px; /* Reduce font size */
-        justify-content: center; /* Center align text and icons */
-        border-radius: 5px; /* Smaller border radius */
-    }
-
-    .sidebar-nav svg {
-        height: 20px; /* Smaller icon size */
-        margin-right: 5px; /* Space between icon and text */
-    }
-
-    .sidebar-container button {
-        margin: 20px auto; /* Center button with smaller margins */
+    
+    .side_menu {
+        position: fixed;
         display: block;
+        background-color: transparent;
+        color: black;
+        font-size: 2.5rem; 
+        position: absolute;
+        top: 10px;
+        border: none;
+        cursor: pointer;
     }
 
-    .footer-container {
-        position: static; /* Let footer flow with the content */
-        text-align: center; /* Center footer content */
-        padding: 10px 0;
+    .dropdown_sidebar{
+        display: block;
     }
 }

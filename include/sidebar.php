@@ -9,6 +9,19 @@
     $isLoggedIn = isset($_SESSION['user_id']); 
 ?>
 
+<!-- Hamburger Menu -->
+<button class="side_menu">&#9776;</button>
+
+<div class="dropdown_sidebar">
+                <li><a href="../view/dashboard.php">Dashboard</a></li>
+                <li><a href="../view/menu.php">Menu</a></li>
+                <li><a href="../view/cart.php">Cart</a></li>
+                <li><a href="../view/profile.php">Profile</a></li>
+                <li><a href="../view/order.php">Order</a></li>
+                <li><a href="../view/transaction.php">Transaction</a></li>
+                <li><a href="../controller/logout.php">Logout</a><li>
+            </div>
+
 <div class="sidebar-container">
     <div class="sidebar-logo" onclick="location.href='../'">
         <img src="../assets/images/logo.png">
@@ -150,3 +163,13 @@
     <?php endif; ?>
 
 </div>
+
+<script>
+    const side_menu = document.querySelector('.side_menu'); // The hamburger menu button
+    const dropdown_sidebar = document.querySelector('.dropdown_sidebar'); // The sidebar container
+
+    // Add event listener to toggle the sidebar visibility
+    side_menu.onclick = function () {
+        dropdown_sidebar.classList.toggle('open'); // Toggle 'hidden' class
+    };
+</script>
